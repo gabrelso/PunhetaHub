@@ -366,7 +366,7 @@ Tab:AddButton({
         local rootPart = character and character:FindFirstChild("HumanoidRootPart")
 
         if rootPart then
-            rootPart.CFrame = CFrame.new(-50.86819076538086, 591.5469970703125, 827.4902954101562)
+            rootPart.CFrame = CFrame.new(-77.09373474121094, 594.3091430664062, 814.89794921875)
         end
     end
 })
