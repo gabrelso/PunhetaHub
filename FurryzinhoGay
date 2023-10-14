@@ -304,10 +304,10 @@ function autoDummy()
     spawn(function()
         while _G.dummy == true do
             local args = {
-                [1] = Vector3.new(-52.2797966003418, 593.0914916992188, 828.2676391601562)
-            }
+    [1] = Vector3.new(-82.90673065185547, 594.88623046875, 814.041748046875)
+}
 
-            game:GetService("Players").LocalPlayer.Character.Fireball.FireballEvent:FireServer(unpack(args))
+game:GetService("Players").LocalPlayer.Character.Fireball.FireballEvent:FireServer(unpack(args))
 
             local args = {
                 [1] = workspace:WaitForChild("MAP"):WaitForChild("5k_dummies"):WaitForChild("Dummy2"):WaitForChild("Humanoid"),
