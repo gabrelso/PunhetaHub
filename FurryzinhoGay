@@ -268,6 +268,20 @@ local Section4 = Tab1:AddSection({
     Name = "Creditos Loader: @raphael, Discord: thermal.yxz"
 })
 
+Tab3:AddButton({
+	Name = "Pegar Lightningball",
+	Callback = function()
+      		local currentCFrame = game.Players.LocalPlayer.Character.PrimaryPart.CFrame
+local esperma = CFrame.new(-40.60783767700195, 602.1058349609375, 786.2437744140625)
+
+game.Players.LocalPlayer.Character.PrimaryPart.CFrame = esperma
+wait(0.2)
+fireproximityprompt(Workspace.PickFolder.rock.ProximityPrompt)
+wait(0.2)
+game.Players.LocalPlayer.Character.PrimaryPart.CFrame = currentCFrame
+  	end    
+})
+
 
 Tab3:AddButton({
 	Name = "Reset",
