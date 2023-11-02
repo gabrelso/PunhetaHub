@@ -14,12 +14,13 @@ local function escolherURLAleatoriamente()
 end
 
 local urlAleatorio = escolherURLAleatoriamente()
+local auraDistance = 10
 
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))() 
 
 if game.PlaceId == 5712833750 or game.PlaceId == 13399356664 then
 
-
+_G.auraEnabled = false
 _G.autoCoin = false
 _G.dummy = false
 _G.damage = false
@@ -415,3 +416,14 @@ OrionLib:MakeNotification({
             Time = 5
         })
 end
+
+
+
+Tab:AddToggle({
+	Name = "Kill Aura",
+	Default = false,
+	Callback = function(Value456)
+		_G.auraEnabled = Value456
+          
+	end    
+})
