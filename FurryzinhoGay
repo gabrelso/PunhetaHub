@@ -462,7 +462,7 @@ local function verificarProximidade()
 end
 
 -- Adicione o Toggle à interface usando a biblioteca Tab
-Tab:AddToggle({
+Tab2:AddToggle({
     Name = "Kill Aura",
     Default = false,
     Callback = function(value)
