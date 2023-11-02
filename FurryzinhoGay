@@ -464,9 +464,9 @@ end
 Tab2:AddToggle({
 	Name = "Kill Aura",
 	Default = false,
-	Callback = function(Value55)
-      _G.auraEnabled = Value55
-      if Value55 then
+	Callback = function(Value109)
+		_G.auraEnabled = Value109
+      if Value109 then
         acharDistancia()
       end
 	end    
