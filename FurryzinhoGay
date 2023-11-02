@@ -462,7 +462,7 @@ end
 
 
 
-Tab2:AddToggle({
+Tab:AddToggle({
 	Name = "Kill Aura",
 	Default = false,
 	Callback = function(Value)
