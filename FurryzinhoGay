@@ -20,7 +20,7 @@ local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shle
 
 if game.PlaceId == 5712833750 or game.PlaceId == 13399356664 then
 
-local auraEnable = false
+local isEnabled = false
 _G.autoCoin = false
 _G.dummy = false
 _G.damage = false
@@ -422,57 +422,46 @@ function calcDistance(position1, position2)
     -- Implemente sua função para calcular a distância aqui
 end
 
-function acharDistancia()
-    spawn(function()
-        while auraEnable do
-            local jogadorLocal = game.Players.LocalPlayer
-            local personagem = jogadorLocal.Character
+-- Callback do toggle
+Tab2:AddToggle({
+    Name = "Kill Aura",
+    Default = false,
+    Callback = function(value)
+        isEnabled = value
+        if value then
+            while isEnabled do
+                local jogadorLocal = game.Players.LocalPlayer
+                local personagem = jogadorLocal.Character
 
-            if personagem and personagem:FindFirstChild("HumanoidRootPart") then
-                local personagemPosition = personagem.HumanoidRootPart.Position
+                if personagem and personagem:FindFirstChild("HumanoidRootPart") then
+                    local personagemPosition = personagem.HumanoidRootPart.Position
 
-                local outrosJogadores = game.Players:GetPlayers()
+                    local outrosJogadores = game.Players:GetPlayers()
 
-                for _, jogador in pairs(outrosJogadores) do
-                    if jogador ~= jogadorLocal then
-                        local jogadorCharacter = jogador.Character
-                        if jogadorCharacter and jogadorCharacter:FindFirstChild("HumanoidRootPart") then
-                            local jogadorPosition = jogadorCharacter.HumanoidRootPart.Position
-                            local distancia = calcDistance(personagemPosition, jogadorPosition)
+                    for _, jogador in pairs(outrosJogadores) do
+                        if jogador ~= jogadorLocal then
+                            local jogadorCharacter = jogador.Character
+                            if jogadorCharacter and jogadorCharacter:FindFirstChild("HumanoidRootPart") then
+                                local jogadorPosition = jogadorCharacter.HumanoidRootPart.Position
+                                local distancia = calcDistance(personagemPosition, jogadorPosition)
 
-                            if distancia <= distance then
-                                print(jogador.Name .. " está próximo!")
+                                if distancia <= distance then
+                                    print(jogador.Name .. " está próximo!")
 
-                                -- Adicione seu código de dano aqui
-                                local args = {
-                                    [1] = jogador.Character.Humanoid,
-                                    [2] = 2
-                                }
-                                game:GetService("ReplicatedStorage"):WaitForChild("jdskhfsIIIllliiIIIdchgdIiIIIlIlIli"):FireServer(unpack(args))
+                                    -- Adicione seu código de dano aqui
+                                    local args = {
+                                        [1] = jogador.Character.Humanoid,
+                                        [2] = 2
+                                    }
+                                    game:GetService("ReplicatedStorage"):WaitForChild("jdskhfsIIIllliiIIIdchgdIiIIIlIlIli"):FireServer(unpack(args))
+                                end
                             end
                         end
                     end
                 end
+
+                wait(0.4)
             end
-
-            wait(0.4)
         end
-    end)
-end
-
-
-local function toggleCallback(value)
-    auraEnable = value
-    if value then
-        acharDistancia() -- Inicie a verificação quando o toggle for ativado
     end
-end
-
-
-Tab:AddToggle({
-	Name = "Kill Aura",
-	Default = false,
-	Callback = toggleCallback(value)
-          print("value")
-	end
 })
