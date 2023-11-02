@@ -419,6 +419,11 @@ end
 
 
 
+function calcDistance(position1, position2)
+    return (position1 - position2).Magnitude
+end
+
+
 Tab:AddToggle({
 	Name = "Kill Aura",
 	Default = false,
