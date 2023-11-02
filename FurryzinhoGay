@@ -460,15 +460,14 @@ local function acharDistancia()
     end
 end
 
--- Adicione o Toggle à interface usando a biblioteca Tab
-Tab2:AddToggle({
-    Name = "Kill Aura",
-    Default = false,
-    Callback = function(value555)
-        _G.auraEnabled = value555
-        if _G.auraEnabled then
-            acharDistancia() -- Iniciar verificação quando ativado
-        end
-    end
-})
 
+Tab2:AddToggle({
+	Name = "Kill Aura",
+	Default = false,
+	Callback = function(Value55)
+      _G.auraEnabled = Value55
+      if Value55 then
+        acharDistancia()
+      end
+	end    
+})
