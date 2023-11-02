@@ -423,11 +423,10 @@ function calcDistance(position1, position2)
     return (position1 - position2).Magnitude
 end
 
-local auraEnabled = false -- Variável para rastrear o estado do Kill Aura
 
 -- Função para verificar proximidade e aplicar dano
-local function verificarProximidade()
-    while auraEnabled do
+local function acharDistancia()
+    while _G.auraEnabled do
         local jogadorLocal = game.Players.LocalPlayer
         local personagem = jogadorLocal.Character
 
@@ -465,10 +464,10 @@ end
 Tab2:AddToggle({
     Name = "Kill Aura",
     Default = false,
-    Callback = function(value)
-        auraEnabled = value
-        if auraEnabled then
-            verificarProximidade() -- Iniciar verificação quando ativado
+    Callback = function(value555)
+        _G.auraEnabled = value555
+        if _G.auraEnabled then
+            acharDistancia() -- Iniciar verificação quando ativado
         end
     end
 })
