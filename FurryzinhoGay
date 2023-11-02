@@ -418,6 +418,14 @@ OrionLib:MakeNotification({
 end
 
 
+Tab2:AddToggle({
+	Name = "This is a toggle!",
+	Default = false,
+	Callback = acharDistancia(Value)
+		print(Value)
+	end    
+})
+
 
 function calcDistance(position1, position2)
     return (position1 - position2).Magnitude
@@ -459,15 +467,3 @@ local function acharDistancia()
         wait(0.4)
     end
 end
-
-
-Tab2:AddToggle({
-	Name = "Kill Aura",
-	Default = false,
-	Callback = function(Value109)
-		_G.auraEnabled = Value109
-      if Value109 then
-        acharDistancia()
-      end
-	end    
-})
