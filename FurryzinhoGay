@@ -20,7 +20,7 @@ local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shle
 
 if game.PlaceId == 5712833750 or game.PlaceId == 13399356664 then
 
-_G.auraEnabled = false
+local auraEnable = false
 _G.autoCoin = false
 _G.dummy = false
 _G.damage = false
@@ -424,7 +424,7 @@ end
 
 function acharDistancia()
     spawn(function()
-        while _G.auraEnabled do
+        while auraEnable do
             local jogadorLocal = game.Players.LocalPlayer
             local personagem = jogadorLocal.Character
 
@@ -461,13 +461,18 @@ function acharDistancia()
 end
 
 
+local function toggleCallback(value)
+    auraEnable = value
+    if value then
+        acharDistancia() -- Inicie a verificação quando o toggle for ativado
+    end
+end
+
 
 Tab:AddToggle({
 	Name = "Kill Aura",
 	Default = false,
-	Callback = function(Value)
-		if Value then
-                  acharDistancia()
+	Callback = toggleCallback(value)
+          print("value")
 	end
-  end
 })
