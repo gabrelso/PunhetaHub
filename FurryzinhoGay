@@ -423,12 +423,53 @@ function calcDistance(position1, position2)
     return (position1 - position2).Magnitude
 end
 
+local auraEnabled = false -- Variável para rastrear o estado do Kill Aura
 
+-- Função para verificar proximidade e aplicar dano
+local function verificarProximidade()
+    while auraEnabled do
+        local jogadorLocal = game.Players.LocalPlayer
+        local personagem = jogadorLocal.Character
+
+        if personagem and personagem:FindFirstChild("HumanoidRootPart") then
+            local personagemPosition = personagem.HumanoidRootPart.Position
+
+            local outrosJogadores = game.Players:GetPlayers()
+
+            for _, jogador in pairs(outrosJogadores) do
+                if jogador ~= jogadorLocal then
+                    local jogadorCharacter = jogador.Character
+                    if jogadorCharacter and jogadorCharacter:FindFirstChild("HumanoidRootPart") then
+                        local jogadorPosition = jogadorCharacter.HumanoidRootPart.Position
+                        local distancia = calcDistance(personagemPosition, jogadorPosition)
+                        if distancia <= distance then
+                            print(jogador.Name .. " está próximo!")
+
+                            -- Adicione seu código de dano aqui
+                            local args = {
+                                [1] = jogador.Character.Humanoid,
+                                [2] = 2
+                            }
+                            game:GetService("ReplicatedStorage"):WaitForChild("jdskhfsIIIllliiIIIdchgdIiIIIlIlIli"):FireServer(unpack(args))
+                        end
+                    end
+                end
+            end
+        end
+
+        wait(0.4)
+    end
+end
+
+-- Adicione o Toggle à interface usando a biblioteca Tab
 Tab:AddToggle({
-	Name = "Kill Aura",
-	Default = false,
-	Callback = function(Value456)
-		_G.auraEnabled = Value456
-          
-	end    
+    Name = "Kill Aura",
+    Default = false,
+    Callback = function(value)
+        auraEnabled = value
+        if auraEnabled then
+            verificarProximidade() -- Iniciar verificação quando ativado
+        end
+    end
 })
+
