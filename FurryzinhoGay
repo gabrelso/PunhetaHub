@@ -418,22 +418,13 @@ OrionLib:MakeNotification({
 end
 
 
-Tab2:AddToggle({
-	Name = "This is a toggle!",
-	Default = false,
-	Callback = acharDistancia(Value)
-		print(Value)
-	end    
-})
-
-
 function calcDistance(position1, position2)
     return (position1 - position2).Magnitude
 end
 
 
 -- Função para verificar proximidade e aplicar dano
-local function acharDistancia()
+function acharDistancia()
     while _G.auraEnabled do
         local jogadorLocal = game.Players.LocalPlayer
         local personagem = jogadorLocal.Character
@@ -467,3 +458,14 @@ local function acharDistancia()
         wait(0.4)
     end
 end
+
+
+Tab2:AddToggle({
+	Name = "Kill Aura",
+	Default = false,
+	Callback = function(Value)
+		if Value then
+                  acharDistancia()
+	end
+  end
+})
