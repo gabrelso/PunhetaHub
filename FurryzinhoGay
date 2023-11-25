@@ -72,7 +72,7 @@ local Tab4 = Window:MakeTab({
 Tab4:AddDropdown({
     Name = "Selecionar Boss",
     Default = "1",
-    Options = {"LavaGorilla", "CENTAUR", "Griffin", "BONEHEAD"},
+    Options = {"LavaGorilla", "CENTAUR", "Griffin", "DragonGiraffe"},
     Callback = function(Value)
         bossSelect = Value
     end
@@ -107,7 +107,7 @@ function boneKill()
     spawn(function()
         while _G.autoAllBoss == true do
             local args4 = {
-                [1] = workspace:WaitForChild("NPC"):WaitForChild("BONEHEAD"):WaitForChild("Humanoid"),
+                [1] = workspace:WaitForChild("NPC"):WaitForChild("DragonGiraffe"):WaitForChild("Humanoid"),
                 [2] = 2
             }
 
