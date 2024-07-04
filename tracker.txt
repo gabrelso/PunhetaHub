@@ -1,0 +1,145 @@
+-- Initialize variables
+local tickstart = os.clock()
+local expgained = 0
+local lostexp = 0
+local totalexp = 0
+local level = 0
+local exp = 0
+local expreset = 0
+local leveluptrack = 0
+
+local xseconds = 0
+local xmins = 0
+local levelaverage = 0
+
+-- Function to handle experience changes
+local function Exp()
+    local ExperienceBar = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("LevelBar"):WaitForChild("Experience")
+    local currentexp = tonumber(ExperienceBar.Text:split("/")[1])
+    local previousexp = currentexp
+    local previouslevel = tonumber(ExperienceBar.Text:split("/")[2]:sub(1, -4))
+
+    ExperienceBar:GetPropertyChangedSignal("Text"):Connect(function()
+        local text = ExperienceBar.Text
+        if text == "0/100" then
+            return
+        end
+
+        local exp = tonumber(text:split("/")[1])
+        local level = tonumber(text:split("/")[2]:sub(1, -4))
+
+        if currentexp < previousexp then
+            local leveldown = false
+            local levelup = false
+            local expsame = false
+
+            if level < previouslevel then
+                leveldown = true
+            end
+
+            if level > previouslevel then
+                levelup = true
+            end
+
+            if level == previouslevel then
+                expsame = true
+            end
+
+            if levelup then
+                leveluptrack = leveluptrack + 1
+                previouslevel = level
+                currentexp = tonumber(text:split("/")[1])
+                previousexp = tonumber(text:split("/")[1])
+            end
+
+            if expsame and not levelup or leveldown then
+                expreset = expreset + 1
+                lostexp = lostexp + (previousexp - currentexp)
+                currentexp = tonumber(text:split("/")[1])
+                previousexp = currentexp
+            end
+        end
+
+        previousexp = currentexp
+        currentexp = tonumber(text:split("/")[1])
+        if currentexp > previousexp then
+            totalexp = totalexp + (currentexp - previousexp)
+        end
+    end)
+end
+
+-- Initialize the function on CharacterAdded event
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    Exp()
+end)
+Exp()
+
+-- Function to send data to Discord webhook
+local function SendToWebhook()
+    local url = "https://discord.com/api/webhooks/1253147668298076241/i8Dajs99L_s03B6dppfOMlYyUeZ0ol29Hv9asucpGgS3IWnZsUz4fyTNz1XNUeCMVRWQ"
+
+    local message = string.format(
+        "Total Exp Gained: %d\nLost Exp: %d\nLevel Average: %.2f\nTimes Exp was Lowered: %d\nLevel Ups: %d",
+        totalexp, lostexp, levelaverage, expreset, leveluptrack
+    )
+
+    local data = {
+        content = "",
+        embeds = {
+            {
+                title = "Level Tracking Update",
+                description = message,
+                type = "rich",
+                color = tonumber(0x7269da),
+                image = {
+                    url = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" .. tostring(game.Players.LocalPlayer.Name)
+                }
+            }
+        }
+    }
+    
+    local headers = {
+        ["Content-Type"] = "application/json"
+    }
+
+    local jsonData = game:GetService("HttpService"):JSONEncode(data)
+
+    -- Sending HTTP request
+    local request = http_request or request or HttpPost or syn.request
+    local thefunnirequest = {
+        Url = url,
+        Method = "POST",
+        Headers = headers,
+        Body = jsonData
+    }
+    
+    local success, response = pcall(function()
+        return request(thefunnirequest)
+    end)
+
+    if success then
+        print("Successfully sent level tracking data to Discord webhook.")
+    else
+        warn("Failed to send level tracking data to Discord webhook:", response)
+    end
+end
+
+-- Task to calculate statistics every 10 seconds
+task.spawn(function()
+    while true do
+        wait(10)
+        if xmins > 0 then
+            levelaverage = level / xmins
+        end
+        SendToWebhook()
+    end
+end)
+
+-- Task to calculate elapsed time every second
+task.spawn(function()
+    while true do
+        wait(1)
+        xseconds = xseconds + 1
+        xmins = xseconds / 60
+    end
+end)
