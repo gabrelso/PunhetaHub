@@ -1,15 +1,24 @@
-local enabled = true -- Enabling the script, false = disabled.
-local autoSkip = true -- Enable auto skip, false = disabled.
-local raidMode = "Hard" -- Choose raid to select (Hard, Normal, and Easy)
+local vim = game:GetService("VirtualInputManager")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
-while enabled do task.wait(0.5)
-    local gyatt = {
-        [1] = raidMode
+LocalPlayer.CharacterAdded:Connect(function(character)
+    if getgenv().AutoShiftlock then
+        task.wait(1.5)
+        vim:SendKeyEvent(true, "LeftShift", false, nil)
+        vim:SendKeyEvent(false, "LeftShift", false, nil)
+    end
+end)
+
+while getgenv().Enabled do
+    task.wait(0.65)
+    local args = {
+        [1] = RaidMode
     }
-    game:GetService("ReplicatedStorage").ChooseMapRemote:FireServer(unpack(gyatt))
+    game:GetService("ReplicatedStorage").ChooseMapRemote:FireServer(unpack(args)) 
     game:GetService("ReplicatedStorage").GoldenArenaEvents.StartEvent:FireServer()
     
-    if autoSkip then
+    if getgenv().AutoSkip then
         game:GetService("ReplicatedStorage").GoldenArenaEvents.SkipFunc:InvokeServer()
     end
 end
