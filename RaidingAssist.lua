@@ -20,7 +20,7 @@ end
 
 LocalPlayer.CharacterAdded:Connect(function(character)
     if getgenv().AutoShiftlock then
-        task.wait(1.5)
+        task.wait(2)
         vim:SendKeyEvent(true, "LeftShift", false, nil)
         vim:SendKeyEvent(false, "LeftShift", false, nil)
     end
