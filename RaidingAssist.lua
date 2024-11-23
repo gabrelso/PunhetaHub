@@ -5,11 +5,11 @@ local vim = game:GetService("VirtualInputManager")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
+local raidSelect = { [1] = RaidMode }
+game:GetService("ReplicatedStorage").ChooseMapRemote:FireServer(unpack(raidSelect))
+
 while getgenv().Enabled do
     task.wait(0.65)
-    local raidSelect = {
-        [1] = RaidMode
-    }
     game:GetService("ReplicatedStorage").ChooseMapRemote:FireServer(unpack(raidSelect)) 
     game:GetService("ReplicatedStorage").GoldenArenaEvents.StartEvent:FireServer()
     
@@ -20,8 +20,9 @@ end
 
 LocalPlayer.CharacterAdded:Connect(function(character)
     if getgenv().AutoShiftlock then
-        task.wait(2)
+        task.wait(3)
         vim:SendKeyEvent(true, "LeftShift", false, nil)
         vim:SendKeyEvent(false, "LeftShift", false, nil)
     end
 end)
+
