@@ -32,10 +32,11 @@ local function pressShift()
     end
 end
 
-LocalPlayer.CharacterAdded:Connect(function(character)
+game.Players.PlayerAdded:Connect(function(player) 
+  if player == LocalPlayer then
     waitForCharacter()
     if getgenv().AutoShiftlock then
-         _wait(2)
-        pressShift()
+      pressShift()
+        end
     end
 end)
