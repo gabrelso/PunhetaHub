@@ -38,6 +38,7 @@ game.Players.PlayerAdded:Connect(function(player)
         
         if getgenv().AutoShiftlock then
             task.wait(2)
+            print("shift locked!")
             vim:SendKeyEvent(true, "LeftShift", false, nil)
             vim:SendKeyEvent(false, "LeftShift", false, nil)
         end
