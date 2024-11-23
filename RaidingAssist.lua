@@ -18,11 +18,6 @@ while getgenv().Enabled do
     end
 end
 
-local function pressShift()
-    vim:SendKeyEvent(true, Enum.KeyCode.LeftShift, false, game)
-    vim:SendKeyEvent(false, Enum.KeyCode.LeftShift, false, game)
-end
-
 local function waitForCharacter()
     repeat _wait() until lp.Character and lp.Character:FindFirstChild("Humanoid")
 end
@@ -37,9 +32,7 @@ end
 local function handleCharacterSpawn()
     shiftLockApplied = false
     waitForCharacter()
-    applyShiftLock()
-end
-
+    game:GetService("VirtualInputManager"):SendKeyEvent(true, "LeftShift", false, game)
 if lp.Character then
     handleCharacterSpawn()
 end
