@@ -6,6 +6,18 @@ local vim = game:GetService("VirtualInputManager")
 local _wait = task.wait
 local shiftLockApplied = false
 
+local args = { [1] = "Hard" }
+game:GetService("ReplicatedStorage").ChooseMapRemote:FireServer(unpack(args))
+
+while getgenv().Enabled do
+    task.wait(1)
+    game:GetService("ReplicatedStorage").ChooseMapRemote:FireServer(unpack(args))
+    game:GetService("ReplicatedStorage").GoldenArenaEvents.StartEvent:FireServer()
+    if getgenv().AutoSkip then
+        game:GetService("ReplicatedStorage").GoldenArenaEvents.SkipFunc:InvokeServer()
+    end
+end
+
 local function pressShift()
     vim:SendKeyEvent(true, Enum.KeyCode.LeftShift, false, game)
     vim:SendKeyEvent(false, Enum.KeyCode.LeftShift, false, game)
