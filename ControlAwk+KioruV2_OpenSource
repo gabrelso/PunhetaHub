@@ -1,3 +1,7 @@
+-- STILL A BETA CONCEPT, UPDATES MAY COME SOON.
+-- Made by lv7gab
+
+
 
 local lp = game.Players.LocalPlayer
 local _wait = task.wait
