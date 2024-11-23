@@ -17,11 +17,20 @@ while getgenv().Enabled do
     end
 end
 
+local shiftLockApplied = false
+
+local function pressShift()
+    vim:SendKeyEvent(true, Enum.KeyCode.LeftShift, false, game)
+    vim:SendKeyEvent(false, Enum.KeyCode.LeftShift, false, game)
+end
+
 local function setupShiftLock()
-    task.wait(5)
-    if getgenv().AutoShiftlock then
-        vim:SendKeyEvent(true, "LeftShift", false, game)
-        vim:SendKeyEvent(false, "LeftShift", false, game)
+    if not shiftLockApplied then
+        task.wait(5)
+        if getgenv().AutoShiftlock then
+            pressShift()
+            shiftLockApplied = true
+        end
     end
 end
 
