@@ -20,11 +20,10 @@ end
 local function setupShiftLock()
     task.wait(5)
     if getgenv().AutoShiftlock then
-            vim:SendKeyEvent(true, "LeftShift", false, game)
-            vim:SendKeyEvent(false, "LeftShift", false, game)
-        end
-    end 
-end 
+        vim:SendKeyEvent(true, "LeftShift", false, game)
+        vim:SendKeyEvent(false, "LeftShift", false, game)
+    end
+end
 
 if LocalPlayer.Character then
     setupShiftLock()
