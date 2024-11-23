@@ -19,10 +19,10 @@ while getgenv().Enabled do
 end
 
 LocalPlayer.CharacterAdded:Connect(function(character)
+    local characterModel = workspace:WaitForChild("PlayerCharacters"):WaitForChild(LocalPlayer.Name)
     if getgenv().AutoShiftlock then
-        task.wait(3)
+        task.wait(2)
         vim:SendKeyEvent(true, "LeftShift", false, nil)
         vim:SendKeyEvent(false, "LeftShift", false, nil)
     end
 end)
-
