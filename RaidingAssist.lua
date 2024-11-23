@@ -1,6 +1,7 @@
 local lp = game.Players.LocalPlayer
 local vim = game:GetService("VirtualInputManager")
 local _wait = task.wait
+
 local shiftLockApplied = false
 
 local args = { [1] = "Hard" }
