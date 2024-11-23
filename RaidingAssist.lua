@@ -36,6 +36,7 @@ game.Players.PlayerAdded:Connect(function(player)
   if player == LocalPlayer then
     waitForCharacter()
     if getgenv().AutoShiftlock then
+      task.wait(2)
       pressShift()
         end
     end
