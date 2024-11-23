@@ -19,9 +19,8 @@ while getgenv().Enabled do
 end
 
 local function pressShift()
-    vim:SendKeyEvent(true, Enum.KeyCode.LeftShift, false, game)
-    _wait(0.1)
-    vim:SendKeyEvent(false, Enum.KeyCode.LeftShift, false, game)
+    vim:SendKeyEvent(true, "LeftShift", false, game)
+    vim:SendKeyEvent(false, "LeftShift", false, game)
 end
 
 local function waitForCharacter()
