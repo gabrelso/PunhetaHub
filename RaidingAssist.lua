@@ -26,9 +26,11 @@ end
 game.Players.PlayerAdded:Connect(function(player) 
     if player == LocalPlayer then
         LocalPlayer.CharacterAdded:Connect(function(character)
-            task.wait(5)
-            if getgenv().AutoShiftlock then
-                pressShift() 
+            if character and character:FindFirstChild("HumanoidRootPart") then
+                task.wait(5)
+                if getgenv().AutoShiftlock then
+                    pressShift()
+                end
             end
         end)
     end
