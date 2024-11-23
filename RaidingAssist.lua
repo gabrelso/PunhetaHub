@@ -18,26 +18,18 @@ while getgenv().Enabled do
     end
 end
 
-local function waitForCharacter()
-    repeat wait() until workspace:WaitForChild("PlayerCharacters"):WaitForChild(LocalPlayer.Name)
-end
-
-local shiftPressed = false
-
 local function pressShift()
-    if not shiftPressed then
-        shiftPressed = true
-        vim:SendKeyEvent(true, "LeftShift", false, game)
-        vim:SendKeyEvent(false, "LeftShift", false, game)
-    end
-end
+    vim:SendKeyEvent(true, "LeftShift", false, nil)
+    vim:SendKeyEvent(false, "LeftShift", false, nil)
+end 
 
 game.Players.PlayerAdded:Connect(function(player) 
-  if player == LocalPlayer then
-    waitForCharacter()
-    if getgenv().AutoShiftlock then
-      task.wait(2)
-      pressShift()
-        end
+    if player == LocalPlayer then
+        LocalPlayer.CharacterAdded:Connect(function(character)
+            if getgenv().AutoShiftlock then
+                task.wait(2)
+                pressShift()
+            end
+        end)
     end
 end)
