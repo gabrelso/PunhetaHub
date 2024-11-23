@@ -12,10 +12,10 @@ end)
 
 while getgenv().Enabled do
     task.wait(0.65)
-    local args = {
+    local raidSelect = {
         [1] = RaidMode
     }
-    game:GetService("ReplicatedStorage").ChooseMapRemote:FireServer(unpack(args)) 
+    game:GetService("ReplicatedStorage").ChooseMapRemote:FireServer(unpack(raidSelect)) 
     game:GetService("ReplicatedStorage").GoldenArenaEvents.StartEvent:FireServer()
     
     if getgenv().AutoSkip then
