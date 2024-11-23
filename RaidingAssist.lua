@@ -1,21 +1,26 @@
--- SUPPOSED TO ASSIST PEOPLE WITH RAIDS 
--- Made by lv7gab, don't sue my ass.
-
 local lp = game.Players.LocalPlayer
 local vim = game:GetService("VirtualInputManager")
 local _wait = task.wait
 local shiftLockApplied = false
 
 local args = { [1] = "Hard" }
+
 game:GetService("ReplicatedStorage").ChooseMapRemote:FireServer(unpack(args))
 
 while getgenv().Enabled do
-    task.wait(1)
+    _wait(1)
     game:GetService("ReplicatedStorage").ChooseMapRemote:FireServer(unpack(args))
     game:GetService("ReplicatedStorage").GoldenArenaEvents.StartEvent:FireServer()
+
     if getgenv().AutoSkip then
         game:GetService("ReplicatedStorage").GoldenArenaEvents.SkipFunc:InvokeServer()
     end
+end
+
+local function pressShift()
+    vim:SendKeyEvent(true, Enum.KeyCode.LeftShift, false, game)
+    _wait(0.1)
+    vim:SendKeyEvent(false, Enum.KeyCode.LeftShift, false, game)
 end
 
 local function waitForCharacter()
@@ -32,7 +37,9 @@ end
 local function handleCharacterSpawn()
     shiftLockApplied = false
     waitForCharacter()
-    game:GetService("VirtualInputManager"):SendKeyEvent(true, "LeftShift", false, game)
+    applyShiftLock()
+end
+
 if lp.Character then
     handleCharacterSpawn()
 end
