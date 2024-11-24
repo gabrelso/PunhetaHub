@@ -35,11 +35,7 @@ local function applyShiftLock()
 end
 
 local function handleCharacterSpawn()
-    if shiftLockApplied then
-        print("Shift lock already applied, skipping.")
-        return
-    end
-    shiftLockApplied = false 
+    shiftLockApplied = false
     waitForCharacter()
     applyShiftLock()
 end
