@@ -1,3 +1,7 @@
+if game.PlaceId ~= 5931540094 then
+    return
+end
+
 local lp = game.Players.LocalPlayer
 local vim = game:GetService("VirtualInputManager")
 local _wait = task.wait
