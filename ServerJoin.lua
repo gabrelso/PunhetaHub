@@ -1,4 +1,5 @@
 local PlaceID
+local TeleportService = game:GetService("TeleportService")
 
 if Sea == "1st" then
     PlaceID = 4520749081
@@ -12,7 +13,7 @@ local function joinServer()
     while true do
         task.wait(1)
         if game.PlaceId == PlaceID and game.PlaceId ~= 5931540094 and game.JobId ~= JobID then
-            Roblox.GameLauncher.joinGameInstance(PlaceID, JobID)
+            TeleportService:TeleportToPlaceInstance(PlaceID, JobID), JobID)
         end
     end
 end
