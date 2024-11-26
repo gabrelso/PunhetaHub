@@ -10,9 +10,9 @@ elseif Sea == "3rd" then
 end
 
 local function JoinServer()
-    while true do
+    while getgenv().Enabled do
         task.wait(1)
-        if game.PlaceId == PlaceID and game.PlaceId ~= 5931540094 and game.JobId ~= JobID then
+        if game.JobId ~= JobID then
             TeleportService:TeleportToPlaceInstance(PlaceID, JobID)
         end
     end
