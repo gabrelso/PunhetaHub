@@ -20,6 +20,8 @@ while getgenv().Enabled do
     end
 end
 
+repeat wait() until game:IsLoaded()
+
 local function pressShift()
     vim:SendKeyEvent(true, "LeftShift", false, game)
     vim:SendKeyEvent(false, "LeftShit", false, game)
