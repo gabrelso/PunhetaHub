@@ -1,7 +1,3 @@
-if game.PlaceId ~= 4520749081 and game.PlaceId ~= 6381829480 and game.PlaceId ~= 15759515082 then
-    return
-end
-    
 local PlaceID
 local TeleportService = game:GetService("TeleportService")
 
@@ -11,6 +7,10 @@ elseif Sea == "2nd" then
     PlaceID = 6381829480
 elseif Sea == "3rd" then
     PlaceID = 15759515082
+end
+
+if game.PlaceId ~= PlaceID then
+    return
 end
 
 local function JoinServer()
