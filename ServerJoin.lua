@@ -1,3 +1,7 @@
+if game.PlaceId ~= 4520749081 or game.PlaceId ~= 6381829480 or game.PlaceId ~= 15759515082 then
+    return
+end
+    
 local PlaceID
 local TeleportService = game:GetService("TeleportService")
 
