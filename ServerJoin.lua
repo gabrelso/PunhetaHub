@@ -9,7 +9,7 @@ elseif Sea == "3rd" then
     PlaceID = 15759515082
 end
 
-local function joinServer()
+local function JoinServer()
     while true do
         task.wait(1)
         if game.PlaceId == PlaceID and game.PlaceId ~= 5931540094 and game.JobId ~= JobID then
@@ -18,5 +18,4 @@ local function joinServer()
     end
 end
 
-repeat task.wait() until game:IsLoaded()
-joinServer()
+JoinServer()
