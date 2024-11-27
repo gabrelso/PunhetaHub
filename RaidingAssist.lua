@@ -18,5 +18,5 @@ while getgenv().Enabled do
 end
 
 
-repeat wait() until game:IsLoaded() and workspace:FindFirstChild("MOB") and workspace.MOB:FindFirstChild("Shadowtorn Cruelty")
+repeat wait() until game:IsLoaded() and workspace:FindFirstChild("MOB") and workspace.MOB:FindFirstChild("Shadowtorn Cruelty") and getgenv().AutoShiftlock
 local vim = game:GetService("VirtualInputManager") vim:SendKeyEvent(true, "LeftShift", false, game) vim:SendKeyEvent(false, "LeftShift", false, game) 
