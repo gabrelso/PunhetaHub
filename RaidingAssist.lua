@@ -2,6 +2,7 @@ if game.PlaceId ~= 5931540094 then
     return
 end
 
+local RaidMode = getgenv().RaidMode
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
@@ -15,7 +16,6 @@ task.spawn(function()
     while getgenv().Enabled do
         task.wait(1)
         game:GetService("ReplicatedStorage").GoldenArenaEvents.StartEvent:FireServer()
-        game:GetService("ReplicatedStorage").ChooseMapRemote:FireServer(unpack(argsRaid))
         if getgenv().AutoSkip then
             game:GetService("ReplicatedStorage").GoldenArenaEvents.SkipFunc:InvokeServer()
         end
