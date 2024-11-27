@@ -6,7 +6,7 @@ end
 
 local function JoinServer()
     while getgenv().Enabled do task.wait(1)
-        if game.JobId ~= JobID and if game.PlaceId == 4520749081 then
+        if game.JobId ~= JobID and game.PlaceId == 4520749081 then
             print("Attempting to teleport to JobID:", JobID)
             TeleportService:TeleportToPlaceInstance(PlaceID, JobID)
         else
