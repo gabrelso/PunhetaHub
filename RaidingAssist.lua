@@ -15,6 +15,7 @@ task.spawn(function()
     while getgenv().Enabled do
         task.wait(1)
         game:GetService("ReplicatedStorage").GoldenArenaEvents.StartEvent:FireServer()
+        game:GetService("ReplicatedStorage").ChooseMapRemote:FireServer(unpack(argsRaid))
         if getgenv().AutoSkip then
             game:GetService("ReplicatedStorage").GoldenArenaEvents.SkipFunc:InvokeServer()
         end
