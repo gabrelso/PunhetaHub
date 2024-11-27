@@ -17,12 +17,9 @@ while getgenv().Enabled do
     end
 end
 
-print("Started checking...")
 repeat task.wait() until game:IsLoaded()
-repeat task.wait() until workspace:FindFirstChild("MOB")
-repeat task.wait() until workspace.MOB:FindFirstChild("Shadowtorn Cruelty")
-print("Checking finished")
-task.wait(3)
+repeat task.wait() until workspace.MOB:FindFirstChild["Shadowthorn Cruelty"]
+task.wait(1)
 print("Shift locking...")
 local vim = game:GetService("VirtualInputManager")
 vim:SendKeyEvent(true, "LeftShift", false, game)
