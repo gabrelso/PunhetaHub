@@ -2,7 +2,6 @@ if game.PlaceId ~= 5931540094 then
     return
 end
 
-local vim = game:GetService("VirtualInputManager")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
@@ -18,12 +17,6 @@ while getgenv().Enabled do
     end
 end
 
-local function setupShiftLock()
-    if getgenv().AutoShiftlock then
-        vim:SendKeyEvent(true, "LeftShift", false, game)
-        vim:SendKeyEvent(false, "LeftShift", false, game)
-    end
-end
 
-repeat wait() until workspace:FindFirstChild("MOB") and workspace.MOB:FindFirstChild("Shadowtorn Cruelty")
-setupShiftLock()
+repeat wait() until game:IsLoaded() and workspace:FindFirstChild("MOB") and workspace.MOB:FindFirstChild("Shadowtorn Cruelty")
+local vim = game:GetService("VirtualInputManager") vim:SendKeyEvent(true, "LeftShift", false, game) vim:SendKeyEvent(false, "LeftShift", false, game) 
